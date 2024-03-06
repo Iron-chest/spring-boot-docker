@@ -19,8 +19,10 @@ services:
       - "8080:8080"
     networks:
       - springappnet
+    depends_on:
+      mongo
   mongo:
-     image: mongo
+    image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: devdb
       MONGO_INITDB_ROOT_PASSWORD: devdb123
