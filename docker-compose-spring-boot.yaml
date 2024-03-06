@@ -1,3 +1,9 @@
+
+# 1. First create your docker network
+ docker network create springappnet
+# 2. Create your docker volume
+ docker volume create springappvol
+# docker-compose.yml 
 #MYLANDMARKTECH PROJECT FOR DOCKER COMPOSE FILE
 
 version: '3.1'
@@ -10,22 +16,23 @@ services:
       MONGO_DB_USERNAME: devdb
       MONGO_DB_PASSWORD: devdb123
     ports:
-      - 8080:8080
+      - "8080:8080"
     networks:
       - springappnet
   mongo:
-    image: mongo
+     image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: devdb
       MONGO_INITDB_ROOT_PASSWORD: devdb123
-      volumes:
-      - springappdata:/data/db
+    volumes:
+      - springappvol:/data/db
     restart: always
     networks:
-      - springapp
+      - springappnet
+
 volumes:
-  springappdata:
-    driver: local
+  springappvol:
+    external: true
 networks:
   springappnet:
-    driver: bridge
+    external: true
