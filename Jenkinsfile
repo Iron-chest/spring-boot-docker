@@ -5,7 +5,7 @@ pipeline{
     maven "maven3"
   }  
     environment {
-    APP_NAME = "spring-boot-app"
+          APP_NAME = "spring-boot-app"
           RELEASE = "1.0.0"
           DOCKER_USER = "devopsforjesus"
           DOCKER_PASS = 'Ironchest567'
