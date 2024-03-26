@@ -3,15 +3,6 @@ pipeline{
   tools {
     jdk  "Java17"
     maven "maven3"
-  }  
-    environment {
-          APP_NAME = "spring-boot-app"
-          RELEASE = "1.0.0"
-          DOCKER_USER = "devopsforjesus"
-          DOCKER_PASS = 'Ironchest567'
-          IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-          IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-          JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
   }
   
   stages {
