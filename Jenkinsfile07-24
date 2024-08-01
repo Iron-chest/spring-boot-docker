@@ -21,15 +21,11 @@ node {
 }     
     sh "docker push devopsforjesus/spring-boot-mongo:0.1.0"
   }
-  // Remove local image in Jenkins Server
+    // Remove local image in Jenkins Server
   stage("Remove Local Image"){
-    sh "docker rmi -f devopsforjesus/spring-boot-mongo:0.1.0"
+    sh "docker rmi -f $(docker images -q)"
     }
-  stage("Deploy To Kubernetes Cluster"){
-       kubernetesDeploy(
-         configs: 'springBootMongo.yml', 
-         kubeconfigId: 'KUBERNATES_CONFIG',
-         enableConfigSubstitution: true
-        )
-     }
+ // Deploying to kubernetes
+  stage("DeployAppTok8s"){
+    sh "kubectl apply -f springapp.yaml"
 }
