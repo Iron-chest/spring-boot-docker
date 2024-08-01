@@ -1,0 +1,5 @@
+node {
+  stage ("Git Clone") {
+    git credentialsId: 'Github-Jenkins-Credentials', url: 'https://github.com/Iron-chest/spring-boot-docker'
+  }
+}
