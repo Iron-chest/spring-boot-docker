@@ -12,4 +12,7 @@ node {
   stage ("NexusUpload") {
 //  sh "${mavenHome}/bin/mvn deploy"
   }
+  stage ("DockerBuild") {
+    sh "docker build -t mylandmarktech/spring-boot-mongo ."
+  }
 }
