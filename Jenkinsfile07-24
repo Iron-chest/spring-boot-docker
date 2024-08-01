@@ -25,4 +25,11 @@ node {
   stage("Remove Local Image"){
     sh "docker rmi -f devopsforjesus/spring-boot-mongo:0.1.0"
     }
+  stage("Deploy To Kubernetes Cluster"){
+       kubernetesDeploy(
+         configs: 'springBootMongo.yml', 
+         kubeconfigId: 'KUBERNATES_CONFIG',
+         enableConfigSubstitution: true
+        )
+     }
 }
