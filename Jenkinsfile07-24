@@ -23,9 +23,10 @@ node {
   }
     // Remove local image in Jenkins Server
   stage("Remove Local Image"){
-    sh "docker rmi -f $(docker images -q)"
+    sh "docker rmi -f ${docker images -q}"
     }
  // Deploying to kubernetes
   stage("DeployAppTok8s"){
     sh "kubectl apply -f springapp.yaml"
+  }
 }
