@@ -13,13 +13,13 @@ node {
 //  sh "${mavenHome}/bin/mvn deploy"
   }
   stage ("DockerBuild") {
-    sh "docker build -t devopsforjesus/spring-boot-mongo:0.1.0 ."
+    sh "docker build -t devopsforjesus/spring-boot-mongo:0.1.1 ."
   }
   stage ("PushImageToRegistry") {
       withCredentials([string(credentialsId: 'DockerHub-Jenkins', variable: 'DockerHub_Jenkins')]) { // Never use (-) instead use (_) e.g Docker_Hub
          sh "docker login -u devopsforjesus -p ${DockerHub_Jenkins}"
 }     
-    sh "docker push devopsforjesus/spring-boot-mongo:0.1.0"
+    sh "docker push devopsforjesus/spring-boot-mongo:0.1.1"
   }
     // Remove local image in Jenkins Server
   stage("Remove Local Image"){
